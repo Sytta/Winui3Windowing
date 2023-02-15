@@ -16,7 +16,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Orientation="Horizontal">
-            <Button x:Name="Page1Button" Click="Page1Button_Click">Click Me</Button>
+            <Button x:Name="Page1Button" Click="Page1Button_Click">Show thread info</Button>
             <TextBlock x:Name="Page1TextBlock" />
             <TextBlock Text="Page1" />
         </StackPanel>
