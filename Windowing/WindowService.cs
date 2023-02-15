@@ -19,10 +19,12 @@ namespace Windowing
         {
             var newWindowThread = new Thread(() =>
             {
+                // Is this line necessary?
                 WinRT.ComWrappersSupport.InitializeComWrappers();
 
                 Application.Start((p) =>
                 {
+                    // Are these two lines necessary?
                     var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
                     SynchronizationContext.SetSynchronizationContext(context);
 
