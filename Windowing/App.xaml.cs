@@ -25,6 +25,7 @@ namespace Windowing
         public App()
         {
             this.InitializeComponent();
+            _windowService = new WindowService();
         }
 
         /// <summary>

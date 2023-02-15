@@ -24,7 +24,7 @@ namespace Windowing
             _window = new ThreadLocal<Window> { Value = window};
 
             Debug.Assert(_window != null && _window.IsValueCreated);
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(_window);
+            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(_window.Value);
             _windowId = new ThreadLocal<WindowId> { Value = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd) };
         }
 
@@ -64,19 +64,11 @@ namespace Windowing
 
                         SetCurrentWindow(newWindow);
 
-                        // Set window
-                        if (_mainWindowId == null)
-                        {
-                            _mainWindowId = WindowService.GetCurrentAppWindowId();
-                        }
-
                         var frame = new Frame();
-                        //frame.RequestedTheme = _themeService.Theme;
 
                         AppWindow newAppWindow = WindowService.GetCurrentAppWindow();
                         newAppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
 
-                        //currentWindow.Activated += SingleView_Activated;
                         newWindow.Content = frame;
 
                         // Setup consolidation
