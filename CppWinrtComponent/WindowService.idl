@@ -1,0 +1,12 @@
+namespace CppWinrtComponent
+{
+    [default_interface]
+    runtimeclass WindowService
+    {
+        static void SetCurrentWindow(Microsoft.UI.Xaml.Window window);
+
+        static Microsoft.UI.Xaml.Window GetCurrentWindow();
+        static UInt64 GetCurrentAppWindowId();
+        static Microsoft.UI.Windowing.AppWindow GetCurrentAppWindow();
+    }
+}

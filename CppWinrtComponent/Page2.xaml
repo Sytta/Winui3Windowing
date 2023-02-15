@@ -16,5 +16,6 @@
         Orientation="Horizontal">
         <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
         <TextBlock x:Name="Page2TextBlock" />
+        <TextBlock Text="Page2" />
     </StackPanel>
 </Page>

@@ -23,6 +23,11 @@ namespace winrt::CppWinrtComponent::implementation
     void Page2::myButton_Click(IInspectable const&, RoutedEventArgs const&)
     {
         myButton().Content(box_value(L"Clicked"));
-        //Page2TextBlock().Text("123");
+
+        wchar_t textBuffer[256];
+        const wchar_t* fmt = L"Thread: %lu, WindowId: %u";
+        swprintf_s(textBuffer, fmt, GetCurrentThreadId(), WindowService::GetCurrentAppWindowId());
+
+        Page2TextBlock().Text(textBuffer);
     }
 }

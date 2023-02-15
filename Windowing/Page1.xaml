@@ -12,7 +12,13 @@
     mc:Ignorable="d">
 
     <Grid>
-        <Button x:Name="Page1Button" Click="Page1Button_Click">Click Me</Button>
-        <TextBlock x:Name="Page1TextBlock" />
+        <StackPanel
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Horizontal">
+            <Button x:Name="Page1Button" Click="Page1Button_Click">Click Me</Button>
+            <TextBlock x:Name="Page1TextBlock" />
+            <TextBlock Text="Page1" />
+        </StackPanel>
     </Grid>
 </Page>

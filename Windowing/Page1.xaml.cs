@@ -35,7 +35,7 @@ namespace Windowing
         private void Page1Button_Click(object sender, RoutedEventArgs e)
         {
             Page1Button.Content = "Clicked";
-            Page1TextBlock.Text = $"Thread: {Thread.CurrentThread.ManagedThreadId}, WindowId: {WindowService.GetCurrentAppWindowId}";
+            Page1TextBlock.Text = $"Thread: {Thread.CurrentThread.ManagedThreadId}, WindowId: {CppWinrtComponent.WindowService.GetCurrentAppWindowId()}";
         }
     }
 }

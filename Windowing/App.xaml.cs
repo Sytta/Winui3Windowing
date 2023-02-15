@@ -50,14 +50,13 @@ namespace Windowing
             if (kind == ExtendedActivationKind.Launch)
             {
                 Debug.WriteLine("Activation kind: Launch");
+                _windowService.CreateAndActivateNewWindowAsync(typeof(Page1));
             }
             else if (kind == ExtendedActivationKind.File)
             {
                 Debug.WriteLine("Activation kind: File");
+                _windowService.CreateAndActivateNewWindowAsync(typeof(CppWinrtComponent.Page2));
             }
-
-            _windowService.CreateAndActivateNewWindowAsync(typeof(CppWinrtComponent.Page2));
-
         }
     }
 }

@@ -13,39 +13,7 @@ namespace Windowing
 {
     internal class WindowService
     {
-        private static ThreadLocal<Window>? _window;
-        private static ThreadLocal<WindowId>? _windowId;
         private ulong _windowCounter = 0;
-        private WindowId? _mainWindowId;
-
-        public static void SetCurrentWindow(Window window)
-        {
-            Debug.Assert(_window == null);
-            _window = new ThreadLocal<Window> { Value = window};
-
-            Debug.Assert(_window != null && _window.IsValueCreated);
-            var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(_window.Value);
-            _windowId = new ThreadLocal<WindowId> { Value = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd) };
-        }
-
-        public static Window GetCurrentWindow() 
-        {
-            Debug.Assert(_window != null && _window.IsValueCreated);
-            return _window.Value;
-        }
-
-        public static AppWindow GetCurrentAppWindow()
-        {
-            Debug.Assert(_windowId != null && _windowId.IsValueCreated);
-            return AppWindow.GetFromWindowId(_windowId.Value);
-        }
-
-        public static WindowId GetCurrentAppWindowId()
-        {
-            Debug.Assert(_windowId != null && _windowId.IsValueCreated);
-            return _windowId.Value;
-        }
-
 
         public void CreateAndActivateNewWindowAsync(System.Type? pageType)
         {
@@ -62,11 +30,11 @@ namespace Windowing
                     {
                         var newWindow = new MainWindow();
 
-                        SetCurrentWindow(newWindow);
+                        CppWinrtComponent.WindowService.SetCurrentWindow(newWindow);
 
                         var frame = new Frame();
 
-                        AppWindow newAppWindow = WindowService.GetCurrentAppWindow();
+                        AppWindow newAppWindow = CppWinrtComponent.WindowService.GetCurrentAppWindow();
                         newAppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
 
                         newWindow.Content = frame;
