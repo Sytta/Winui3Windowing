@@ -73,6 +73,9 @@ namespace Windowing
             if (Interlocked.Decrement(ref _windowCounter) == 0)
             {
                 Debug.WriteLine($"Process exiting on {Thread.CurrentThread.ManagedThreadId}");
+
+                // Need to kill the process explicitly to exit. Otherwise the process keeps running. Is there a better way to do this?
+                // Application.Current.Exit does not end the process.
                 Process.GetCurrentProcess().Kill();
             }
 
