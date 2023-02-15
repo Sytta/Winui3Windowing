@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -22,13 +23,19 @@ using Windows.Foundation.Collections;
 namespace Windowing
 {
     /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class Page1 : Page
     {
-        public MainWindow()
+        public Page1()
         {
             this.InitializeComponent();
+        }
+
+        private void Page1Button_Click(object sender, RoutedEventArgs e)
+        {
+            Page1Button.Content = "Clicked";
+            Page1TextBlock.Text = $"Thread: {Thread.CurrentThread.ManagedThreadId}, WindowId: {WindowService.GetCurrentAppWindowId}";
         }
     }
 }
