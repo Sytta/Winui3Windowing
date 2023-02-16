@@ -5,7 +5,7 @@ Can be directly launched or File Activated via .jpg, .bmp, .jpeg, and .png.
 ### CppWinrtComponent
 Contains Page2.xaml/idl/h/cpp and WindowService.idl/h/cpp. Page2 is the page navigated to for FileActivation. WindowService.h/cpp saves the opened windows and return the AppWindow/Window handles.
 
-### CppWinrtComponentProject
+### CppWinrtComponentProjection
 C# project which creates CppWinrtComponent's projection so WindowingApp can use it.
 
 ### WindowingApp
