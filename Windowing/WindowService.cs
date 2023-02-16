@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 
-using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Windowing;
+using System.Threading.Tasks;
+using System;
 
 #nullable enable
 
@@ -14,14 +15,12 @@ namespace Windowing
     internal class WindowService
     {
         private ulong _windowCounter = 0;
+        private ThreadLocal<DispatcherQueueController>? _dispatchingQueueController;
 
         public void CreateAndActivateNewWindowAsync(System.Type? pageType)
         {
             var newWindowThread = new Thread(() =>
             {
-                // Is this line necessary?
-                WinRT.ComWrappersSupport.InitializeComWrappers();
-
                 Application.Start((p) =>
                 {
                     // Are these two lines necessary?
@@ -30,6 +29,9 @@ namespace Windowing
 
                     DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
                     {
+                        // Where to create dispatchingQueueController? the dispatchingQueue.HasThreadAccess = false
+                        _dispatchingQueueController = new ThreadLocal<DispatcherQueueController> { Value = DispatcherQueueController.CreateOnDedicatedThread() };
+
                         var newWindow = new MainWindow();
 
                         CppWinrtComponent.WindowService.SetCurrentWindow(newWindow);
@@ -43,6 +45,8 @@ namespace Windowing
 
                         // Setup consolidation
                         newAppWindow.Closing += OnAppWindowClosing;
+
+                        newWindow.DispatcherQueue.ShutdownStarting += DispatcherQueue_ShutdownStarting;
 
                         // Display the window
                         newWindow.Activate();
@@ -62,16 +66,28 @@ namespace Windowing
             // Do not wait for thread to finish. The new thread will only finish when the window on that thread closes.
         }
 
-        private void OnAppWindowClosing(AppWindow sender, AppWindowClosingEventArgs args)
+        private void DispatcherQueue_ShutdownStarting(DispatcherQueue sender, DispatcherQueueShutdownStartingEventArgs args)
+        {
+            Debug.WriteLine($"DispatcherQueue_ShutdownStarting called on {Thread.CurrentThread.ManagedThreadId}");
+        }
+
+        private async void OnAppWindowClosing(AppWindow sender, AppWindowClosingEventArgs args)
         {
             Debug.WriteLine($"OnAppWindowClosing called on {Thread.CurrentThread.ManagedThreadId}");
             sender.Closing -= OnAppWindowClosing;
-            DecrementWindowCounter();
+            await DecrementWindowCounterAsync();
         }
 
-        private void DecrementWindowCounter()
+        private async Task DecrementWindowCounterAsync()
         {
             Debug.WriteLine($"DecrementWindowCounter called on {Thread.CurrentThread.ManagedThreadId}");
+            Debug.Assert(_dispatchingQueueController != null && _dispatchingQueueController.IsValueCreated);
+
+            if (_dispatchingQueueController is not null && _dispatchingQueueController.IsValueCreated)
+            {
+                await _dispatchingQueueController.Value.ShutdownQueueAsync();
+            }
+
             if (Interlocked.Decrement(ref _windowCounter) == 0)
             {
                 Debug.WriteLine($"Process exiting on {Thread.CurrentThread.ManagedThreadId}");
