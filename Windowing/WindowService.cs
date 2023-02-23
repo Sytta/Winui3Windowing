@@ -15,7 +15,7 @@ namespace Windowing
     internal class WindowService
     {
         private ulong _windowCounter = 0;
-        private ThreadLocal<DispatcherQueueController>? _dispatchingQueueController;
+        //private ThreadLocal<DispatcherQueueController>? _dispatchingQueueController;
 
         public void CreateAndActivateNewWindowAsync(System.Type? pageType)
         {
@@ -29,9 +29,6 @@ namespace Windowing
 
                     DispatcherQueue.GetForCurrentThread().TryEnqueue(() =>
                     {
-                        // Where to create dispatchingQueueController? the dispatchingQueue.HasThreadAccess = false
-                        _dispatchingQueueController = new ThreadLocal<DispatcherQueueController> { Value = DispatcherQueueController.CreateOnDedicatedThread() };
-
                         var newWindow = new MainWindow();
 
                         CppWinrtComponent.WindowService.SetCurrentWindow(newWindow);
@@ -78,15 +75,9 @@ namespace Windowing
             await DecrementWindowCounterAsync();
         }
 
-        private async Task DecrementWindowCounterAsync()
+        private Task DecrementWindowCounterAsync()
         {
             Debug.WriteLine($"DecrementWindowCounter called on {Thread.CurrentThread.ManagedThreadId}");
-            Debug.Assert(_dispatchingQueueController != null && _dispatchingQueueController.IsValueCreated);
-
-            if (_dispatchingQueueController is not null && _dispatchingQueueController.IsValueCreated)
-            {
-                await _dispatchingQueueController.Value.ShutdownQueueAsync();
-            }
 
             if (Interlocked.Decrement(ref _windowCounter) == 0)
             {
@@ -94,10 +85,11 @@ namespace Windowing
 
                 // Need to kill the process explicitly to exit. Otherwise the process keeps running. Is there a better way to do this?
                 // Application.Current.Exit does not end the process.
-                Process.GetCurrentProcess().Kill();
+                Application.Current.Exit();
             }
 
             Debug.WriteLine($"[WindowCounter]: {_windowCounter}");
+            return Task.CompletedTask;
         }
     }
 }
