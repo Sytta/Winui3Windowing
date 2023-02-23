@@ -17,7 +17,8 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="Class.idl" />
+    <Midl Include="Page2.idl" />
+    <Midl Include="WindowService.idl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="CppWinrtComponent.def" />
@@ -28,5 +29,8 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Page2.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="$(MSBuildThisFileDirectory)..\..\natvis\wil.natvis" />
   </ItemGroup>
 </Project>
