@@ -46,3 +46,9 @@ void App::OnLaunched(LaunchActivatedEventArgs const&)
     window = make<MainWindow>();
     window.Activate();
 }
+
+
+void App::OnActivated(Microsoft::Windows::AppLifecycle::AppActivationArguments const&)
+{
+    // Debugger breakpoint placeholder
+}

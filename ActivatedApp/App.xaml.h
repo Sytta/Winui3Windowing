@@ -4,6 +4,7 @@
 #pragma once
 
 #include "App.xaml.g.h"
+#include "winrt/Microsoft.Windows.AppLifecycle.h"
 
 namespace winrt::ActivatedApp::implementation
 {
@@ -12,6 +13,7 @@ namespace winrt::ActivatedApp::implementation
         App();
 
         void OnLaunched(Microsoft::UI::Xaml::LaunchActivatedEventArgs const&);
+        void OnActivated(Microsoft::Windows::AppLifecycle::AppActivationArguments const&);
 
     private:
         winrt::Microsoft::UI::Xaml::Window window{ nullptr };
