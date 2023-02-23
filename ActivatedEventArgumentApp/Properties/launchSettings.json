@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ActivatedEventArgumentApp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ActivatedEventArgumentApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
