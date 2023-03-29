@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "ProtocolLaunchTestApp (Package)": {
+      "commandName": "MsixPackage",
+      "doNotLaunchApp": true
+    },
+    "ProtocolLaunchTestApp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

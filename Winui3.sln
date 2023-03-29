@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActivatedEventArgumentApp",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultipleFileActivationApp", "MultipleFileActivationApp\MultipleFileActivationApp.vcxproj", "{1571D7A1-6582-4693-B56A-CD660F8832A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolLaunchTestApp", "ProtocolLaunchTestApp\ProtocolLaunchTestApp.csproj", "{EEFC691C-E64D-45BA-B0A5-B571936DEC94}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -221,6 +223,36 @@ Global
 		{1571D7A1-6582-4693-B56A-CD660F8832A3}.Release|x86.ActiveCfg = Release|Win32
 		{1571D7A1-6582-4693-B56A-CD660F8832A3}.Release|x86.Build.0 = Release|Win32
 		{1571D7A1-6582-4693-B56A-CD660F8832A3}.Release|x86.Deploy.0 = Release|Win32
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|Any CPU.Build.0 = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|Any CPU.Deploy.0 = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|ARM.ActiveCfg = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|ARM.Build.0 = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|ARM.Deploy.0 = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|ARM64.Build.0 = Debug|ARM64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|x64.ActiveCfg = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|x64.Build.0 = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|x64.Deploy.0 = Debug|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|x86.ActiveCfg = Debug|x86
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|x86.Build.0 = Debug|x86
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Debug|x86.Deploy.0 = Debug|x86
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|Any CPU.ActiveCfg = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|Any CPU.Build.0 = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|Any CPU.Deploy.0 = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|ARM.ActiveCfg = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|ARM.Build.0 = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|ARM.Deploy.0 = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|ARM64.ActiveCfg = Release|ARM64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|ARM64.Build.0 = Release|ARM64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|ARM64.Deploy.0 = Release|ARM64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|x64.ActiveCfg = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|x64.Build.0 = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|x64.Deploy.0 = Release|x64
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|x86.ActiveCfg = Release|x86
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|x86.Build.0 = Release|x86
+		{EEFC691C-E64D-45BA-B0A5-B571936DEC94}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ProtocolLauncher (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ProtocolLauncher (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
