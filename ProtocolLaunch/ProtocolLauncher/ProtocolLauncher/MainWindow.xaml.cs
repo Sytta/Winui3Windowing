@@ -75,13 +75,11 @@ namespace ProtocolLauncher
 
             options.TargetApplicationPackageFamilyName = packageName;
 
+            InitializeWithWindow.Initialize(options, hWnd);
+
             var inputData = new ValueSet();
             inputData.Add("InputToken", inputFile);//input file
 
-            /* Crashes with:
-             Exception thrown: 'System.InvalidOperationException' in WinRT.Runtime.dll
-             An exception of type 'System.InvalidOperationException' occurred in WinRT.Runtime.dll but was not handled in user code
-             */
             _ = await Launcher.LaunchUriForResultsAsync(new Uri("winui3.protocol.launch:", UriKind.Absolute), options, inputData);
         }
     }
