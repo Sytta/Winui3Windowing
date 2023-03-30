@@ -19,11 +19,11 @@
             <Button
                 Margin="4"
                 Click="launcAsyncClick"
-                Content="winui3.protocol.launch with LaunchUriAsync" />
+                Content="winui3.protocol.launch with LaunchUriAsync (works)" />
             <Button
                 Margin="4"
                 Click="launchForResultClick"
-                Content="winui3.protocol.launch with LaunchUriForResultAsync" />
+                Content="winui3.protocol.launch with LaunchUriForResultAsync (doesn't launch target app)" />
         </StackPanel>
     </ScrollViewer>
 </Window>
