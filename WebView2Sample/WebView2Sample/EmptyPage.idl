@@ -1,0 +1,11 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace WebView2Sample
+{
+    [default_interface]
+    runtimeclass EmptyPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        EmptyPage();
+    }
+}
