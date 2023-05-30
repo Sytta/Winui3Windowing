@@ -76,7 +76,7 @@ void App::CreateRootFrame(Microsoft::UI::Xaml::Window const& window)
 
     if (rootFrame.Content() == nullptr)
     {
-        bool navigationSuccess = rootFrame.Navigate(winrt::xaml_typename<EmptyPage>());
+        bool navigationSuccess = rootFrame.Navigate(winrt::xaml_typename<MainPage>());
         if (!navigationSuccess)
         {
             winrt::terminate();
