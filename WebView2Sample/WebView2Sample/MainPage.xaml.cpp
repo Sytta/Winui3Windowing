@@ -63,4 +63,13 @@ namespace winrt::WebView2Sample::implementation
         auto vKey = args.Key();
         OutputDebugStringW(L"OnPreviewKeyDownEvent\n");
     }
+
+    void MainPage::MyWebView_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& args)
+    {
+        auto vKey = args.Key();
+        OutputDebugStringW(L"MyWebView_KeyDown\n");
+    }
 }
+
+
+

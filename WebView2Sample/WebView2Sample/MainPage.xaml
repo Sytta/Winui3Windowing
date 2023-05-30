@@ -16,5 +16,6 @@
         Grid.ColumnSpan="2"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch"
+        KeyDown="MyWebView_KeyDown"
         Source="https://www.microsoft.com" />
 </Page>

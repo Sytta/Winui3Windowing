@@ -20,6 +20,7 @@ namespace winrt::WebView2Sample::implementation
 
         MUX::UIElement::PreviewKeyUp_revoker m_previewKeyUpRevoker;
         MUX::UIElement::PreviewKeyDown_revoker m_previewKeyDownRevoker;
+        void MyWebView_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
     };
 }
 
