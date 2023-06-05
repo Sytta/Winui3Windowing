@@ -4,6 +4,7 @@
 #pragma once
 
 #include "App.xaml.g.h"
+#include "CustomControl.h"
 
 namespace winrt::Winui3UI::implementation
 {

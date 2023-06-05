@@ -1,0 +1,12 @@
+// Copyright (c) Microsoft Corporation and Contributors.
+// Licensed under the MIT License.
+
+namespace Winui3UI
+{
+    [default_interface]
+    runtimeclass CustomControl : Microsoft.UI.Xaml.Controls.Control
+    {
+        CustomControl();
+        Int32 MyProperty;
+    }
+}
