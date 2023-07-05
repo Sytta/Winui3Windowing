@@ -8,7 +8,7 @@
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{39a9bf2b-dd9f-4280-878a-28eb05961f34}</ProjectGuid>
-    <ProjectName>OpenWith</ProjectName>
+    <ProjectName>OpenWithApp</ProjectName>
     <RootNamespace>OpenWith</RootNamespace>
     <!--
       $(TargetName) should be same as $(RootNamespace) so that the produced binaries (.exe/.pri/etc.)

@@ -55,6 +55,9 @@ void App::OnRedirectionActivated(MWAL::AppActivationArguments const& e)
 {
     // Throws RPC not avaiable exception here
     [[maybe_unused]] WAMA::IActivatedEventArgs activatedArgs = e.Data().try_as<WAMA::IActivatedEventArgs>();
+
+    auto newWindow = make<MainWindow>();
+    newWindow.Activate();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
