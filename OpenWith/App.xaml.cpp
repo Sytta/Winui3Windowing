@@ -115,7 +115,10 @@ static bool DecideRedirection()
                 // https://microsoft.visualstudio.com/OS/_backlogs/backlog/Windows%20Photos/Features%20and%20Scenarios/?workitem=45393066
                 redirectEventHandle.create();
                 MWAL::AppActivationArguments args = MWAL::AppInstance::GetCurrent().GetActivatedEventArgs();
+                winrt::hstring kind = L"ActivationKind = " + winrt::to_hstring((int)args.Kind());
+                OutputDebugStringW(kind.c_str());
                 Redirect(keyInstance, args);
+
                 DWORD handleIndex = 0;
                 HANDLE rawHandle = redirectEventHandle.get();
                 if (CoWaitForMultipleObjects(CWMO_DEFAULT, INFINITE, 1, &rawHandle, &handleIndex) != 0)

@@ -1,7 +1,8 @@
 {
   "profiles": {
     "Windowing (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "nativeDebugging": true
     },
     "Windowing (Unpackaged)": {
       "commandName": "Project"

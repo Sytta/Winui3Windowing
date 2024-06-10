@@ -37,6 +37,11 @@ App::App()
 #endif
 }
 
+App::~App()
+{
+    OutputDebugStringW(L"Destroying: App::~App()\n");
+}
+
 /// <summary>
 /// Invoked when the application is launched.
 /// </summary>

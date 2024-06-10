@@ -44,6 +44,7 @@ namespace Windowing
                         newAppWindow.Closing += OnAppWindowClosing;
 
                         newWindow.DispatcherQueue.ShutdownStarting += DispatcherQueue_ShutdownStarting;
+                        newWindow.DispatcherQueue.ShutdownCompleted += DispatcherQueue_ShutdownCompleted;
 
                         // Display the window
                         newWindow.Activate();
@@ -68,14 +69,19 @@ namespace Windowing
             Debug.WriteLine($"DispatcherQueue_ShutdownStarting called on {Thread.CurrentThread.ManagedThreadId}");
         }
 
-        private async void OnAppWindowClosing(AppWindow sender, AppWindowClosingEventArgs args)
+        private void DispatcherQueue_ShutdownCompleted(DispatcherQueue sender, object args)
+        {
+            Debug.WriteLine($"DispatcherQueue_ShutdownCompleted called on {Thread.CurrentThread.ManagedThreadId}");
+        }
+
+        private void OnAppWindowClosing(AppWindow sender, AppWindowClosingEventArgs args)
         {
             Debug.WriteLine($"OnAppWindowClosing called on {Thread.CurrentThread.ManagedThreadId}");
             sender.Closing -= OnAppWindowClosing;
-            await DecrementWindowCounterAsync();
+            DecrementWindowCounterAsync();
         }
 
-        private Task DecrementWindowCounterAsync()
+        private void DecrementWindowCounterAsync()
         {
             Debug.WriteLine($"DecrementWindowCounter called on {Thread.CurrentThread.ManagedThreadId}");
 
@@ -89,7 +95,6 @@ namespace Windowing
             }
 
             Debug.WriteLine($"[WindowCounter]: {_windowCounter}");
-            return Task.CompletedTask;
         }
     }
 }

@@ -3,6 +3,7 @@
 
 using Microsoft.UI.Xaml;
 using System;
+using System.Diagnostics;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -21,7 +22,8 @@ namespace ProtocolLauncher
     public sealed partial class MainWindow : Window
     {
         // Please change this to the package family name of the testing app, if testing other apps
-        const string packageName = "17a86331-a6d4-45cd-b3b8-a2aebe4b3f24_07y260wq62y4j";
+        //const string packageName = "17a86331-a6d4-45cd-b3b8-a2aebe4b3f24_07y260wq62y4j";
+        const string packageName = "8f33c18e-759b-4308-aea0-d4563eff5a16_07y260wq62y4j";
 
         public MainWindow()
         {
@@ -56,31 +58,40 @@ namespace ProtocolLauncher
 
         private async void launchForResultClick(object sender, RoutedEventArgs e) 
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            var inputData = new ValueSet();
             var hWnd = WindowNative.GetWindowHandle(this);
-            InitializeWithWindow.Initialize(picker, hWnd);
 
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
-            picker.FileTypeFilter.Add(".mp4");
+            if (true)
+            {
+                var picker = new Windows.Storage.Pickers.FileOpenPicker();
+                InitializeWithWindow.Initialize(picker, hWnd);
+                picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+                picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+                picker.FileTypeFilter.Add(".mp4");
 
-            //Select a single file
-            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+                //Select a single file
+                Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
 
-            if (file == null)
-                return;
+                if (file == null)
+                    return;
 
-            var inputFile = SharedStorageAccessManager.AddFile(file);
+                var inputFile = SharedStorageAccessManager.AddFile(file);
+                inputData.Add("InputToken", inputFile);//input file
+            }
+
             LauncherOptions options = new LauncherOptions();
-
-            options.TargetApplicationPackageFamilyName = packageName;
-
+            options.TargetApplicationPackageFamilyName = "Microsoft.Windows.Photos_8wekyb3d8bbwe";
             InitializeWithWindow.Initialize(options, hWnd);
 
-            var inputData = new ValueSet();
-            inputData.Add("InputToken", inputFile);//input file
+            inputData.Add("Action", "Trim");//action
 
-            _ = await Launcher.LaunchUriForResultsAsync(new Uri("winui3.protocol.launch:", UriKind.Absolute), options, inputData);
+            // For example: ms-photos:videoedit?InputToken=123abc&Action=Trim&StartTime=01:02:03
+
+            var results = await Launcher.LaunchUriForResultsAsync(new Uri("microsoft.windows.photos.videoedit:"), options, inputData);
+            var status = results.Status;
+            var result = results.Result;
+
+            Trace.Write("Operation done");
         }
     }
 }

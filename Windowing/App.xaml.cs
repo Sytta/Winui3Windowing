@@ -3,7 +3,12 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.AppLifecycle;
+using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading;
+using Windows.ApplicationModel.Activation;
+using Windows.Foundation.Collections;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -57,6 +62,46 @@ namespace Windowing
                 Debug.WriteLine("Activation kind: File");
                 _windowService.CreateAndActivateNewWindowAsync(typeof(CppWinrtComponent.Page2));
             }
+            else if (kind == ExtendedActivationKind.Protocol || kind == ExtendedActivationKind.ProtocolForResults) 
+            {
+                IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData protocolArgs = (IProtocolActivatedEventArgsWithCallerPackageFamilyNameAndData)args.Data;
+                ValueSet valueSet = protocolArgs.Data;
+                bool hasKey = valueSet.TryGetValue("InputToken", out object name);
+                if (hasKey) 
+                {
+                    string key = name as string;
+
+                    IntPtr redirectEventHandle = CreateEvent(IntPtr.Zero, true, false, key);
+                    SetEvent(redirectEventHandle);
+
+                    //bool createdNew = false;
+                    //var redirectWaitHandle = new EventWaitHandle(initialState: false, EventResetMode.ManualReset, name: key, out createdNew);
+
+                    //if (!createdNew)
+                    //{
+                    //    redirectWaitHandle.Set();
+                    //}
+
+                }
+                else
+                {
+                    Debug.WriteLine("unable to get it!");
+                }
+
+                /*
+                 {[InputToken, 0A698AD8-EAE4-4EA8-AD9D-B37B16984D07]}
+                 {[InputToken, 789EC8B6-C458-456F-BFE4-A74A2850C187]}
+                {[InputToken, BC7CC68C-E45B-444E-B0BB-57B672A7C431]}
+                 */
+            }
         }
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+        private static extern IntPtr CreateEvent(
+            IntPtr lpEventAttributes, bool bManualReset,
+            bool bInitialState, string lpName);
+
+        [DllImport("kernel32.dll")]
+        private static extern bool SetEvent(IntPtr hEvent);
     }
 }

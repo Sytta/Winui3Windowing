@@ -4,7 +4,7 @@
 namespace Winui3UI
 {
     [default_interface]
-    runtimeclass CustomControl : Microsoft.UI.Xaml.Controls.Control
+    runtimeclass CustomControl : Microsoft.UI.Xaml.Controls.ContentControl
     {
         CustomControl();
         Int32 MyProperty;

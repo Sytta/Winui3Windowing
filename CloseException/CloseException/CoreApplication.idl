@@ -1,0 +1,9 @@
+namespace CloseException
+{
+    [bindable]
+    [default_interface]
+    runtimeclass CoreApplication 
+    {
+        static CoreApplication Get();
+    }
+}

@@ -133,6 +133,7 @@ namespace CustomTitleBar
         private void F11_Invoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs e)
         {
             Debug.WriteLine($"F11_Invoked: {e.KeyboardAccelerator.Key}");
+            m_window.Content.KeyUp -= Content_KeyUp;
             m_window.Content.KeyUp += Content_KeyUp;
         }
 

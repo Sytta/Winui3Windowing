@@ -11,6 +11,7 @@ namespace winrt::ActivatedApp::implementation
     struct App : AppT<App>
     {
         App();
+        ~App();
 
         void OnLaunched(Microsoft::UI::Xaml::LaunchActivatedEventArgs const&);
         void OnActivated(Microsoft::Windows::AppLifecycle::AppActivationArguments const&);
