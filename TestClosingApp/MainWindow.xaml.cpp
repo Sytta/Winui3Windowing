@@ -22,7 +22,7 @@ namespace winrt::TestClosingApp::implementation
         bool alreadyExisting = false;
         if (!m_semaphoreAcquired)
         {
-            bool created = m_semaphore.try_create(1, INT_MAX, L"TestClosingAppSemaphore", SEMAPHORE_ALL_ACCESS, nullptr, &alreadyExisting);
+            bool created = m_semaphore.try_create(0, INT_MAX, L"TestClosingAppSemaphore", SEMAPHORE_ALL_ACCESS, nullptr, &alreadyExisting);
             assert(created);
             m_semaphore.acquire();
             m_semaphoreAcquired = true;
