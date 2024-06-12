@@ -5,6 +5,8 @@
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Microsoft.UI.Windowing.h>
 
+#include <wil/resource.h>
+
 namespace winrt::TestClosingApp::implementation
 {
     struct MainWindow : MainWindowT<MainWindow>
@@ -18,6 +20,9 @@ namespace winrt::TestClosingApp::implementation
         }
 
         winrt::Windows::Foundation::IAsyncAction myButton_Click(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& args);
+    private:
+        wil::unique_semaphore m_semaphore{};
+        bool m_semaphoreAcquired{ false };
     };
 }
 
